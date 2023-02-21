@@ -6,20 +6,17 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class brand implements Serializable {
-
+public class category implements Serializable {
     private Long id;
     private String name;
-    private String pinyin;
-    private String logo;
-    private String description;
+    private Long parent_id;
+    private Integer depth;
     private String keywords;
     private Integer sort;
-    private Integer sales;
-    private Integer product_count;
-    private Integer comment_count;
-    private Integer positive_comment_count;
+    private String icon;
     private Integer enable;
+    private Integer is_parent;
+    private Integer is_display;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
 
