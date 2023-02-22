@@ -1,6 +1,9 @@
 package cn.tedu.csmall.product.mapper;
 
+import cn.tedu.csmall.product.pojo.entity.Album;
 import cn.tedu.csmall.product.pojo.entity.Category;
+import cn.tedu.csmall.product.pojo.vo.AlbumListItemVO;
+import cn.tedu.csmall.product.pojo.vo.AlbumStandardVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,6 +44,33 @@ public interface CategoryMapper {
      * @return 受影响的行数
      */
     int deleteByIds(Long[] ids);
+
+    /**
+     * 修改相册数据
+     * @param category 封装了被修改的相册数据的ID和新数据的对象
+     * @return
+     */
+    int update(Category category);
+
+    /**
+     * 统计相册数据的数量
+     * @return 相册数据的数量
+     */
+    int count();
+
+    /**
+     * 根据ID查询数据的详情
+     * @param id 相册ID
+     * @return 匹配的相册数据的详情，如果没有匹配的数据，则返回null
+     */
+    AlbumStandardVO getStandardById(Long id);
+
+    /**
+     * 查询相册列表
+     *
+     * @return 相册列表
+     */
+    List<AlbumListItemVO> list();
 
 
 

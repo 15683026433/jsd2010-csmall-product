@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-public class Sku_specification implements Serializable {
+public class Sku_Specification implements Serializable {
     private Long id;
     private Long sku_id;
     private Long attribute_id;

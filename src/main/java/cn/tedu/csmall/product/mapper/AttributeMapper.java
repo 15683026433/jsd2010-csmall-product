@@ -1,6 +1,9 @@
 package cn.tedu.csmall.product.mapper;
 
+import cn.tedu.csmall.product.pojo.entity.Album;
 import cn.tedu.csmall.product.pojo.entity.Attribute;
+import cn.tedu.csmall.product.pojo.vo.AlbumListItemVO;
+import cn.tedu.csmall.product.pojo.vo.AlbumStandardVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,17 +19,17 @@ public interface AttributeMapper {
 
     /**
      * 插入相册数据
-     * @param Attribute 相册数据
+     * @param attribute 相册数据
      * @return 受影响的行数
      */
     int insert(Attribute attribute);
 
     /**
      * 批量插入相册数据
-     * @param attributesList 若干个相册数据的集合
+     * @param attributeList 若干个相册数据的集合
      * @return 受影响的行数
      */
-    int insertBatch(List<Attribute> attributesList);
+    int insertBatch(List<Attribute> attributeList);
 
     /**
      * 根据ID删除相册数据
@@ -41,6 +44,33 @@ public interface AttributeMapper {
      * @return 受影响的行数
      */
     int deleteByIds(Long[] ids);
+
+    /**
+     * 修改相册数据
+     * @param attribute 封装了被修改的相册数据的ID和新数据的对象
+     * @return
+     */
+    int update(Attribute attribute);
+
+    /**
+     * 统计相册数据的数量
+     * @return 相册数据的数量
+     */
+    int count();
+
+    /**
+     * 根据ID查询数据的详情
+     * @param id 相册ID
+     * @return 匹配的相册数据的详情，如果没有匹配的数据，则返回null
+     */
+    AlbumStandardVO getStandardById(Long id);
+
+    /**
+     * 查询相册列表
+     *
+     * @return 相册列表
+     */
+    List<AlbumListItemVO> list();
 
 
 

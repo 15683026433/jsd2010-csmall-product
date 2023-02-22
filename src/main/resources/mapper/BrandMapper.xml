@@ -38,6 +38,50 @@
         )
     </delete>
 
+    <!-- int update(Album album); -->
+    <update id="update">
+        UPDATE
+        pms_album
+        <set>
+            <if test="name != null">
+                name =#{name},
+            </if>
+            <if test="description != null">
+                description =#{name},
+            </if>
+            <if test="sort != null">
+                sort =#{name},
+            </if>
+        </set>
+        WHERE
+        id=#{id}
+    </update>
+
+    <!-- int count(); -->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM pms_album
+    </select>
+
+    <!-- AlbumStandardVO getStandardById(Long id); -->
+    <select id="getStandardById" resultType="cn.tedu.csmall.product.pojo.vo.AlbumStandardVO">
+        SELECT
+            id, name, description, sort, gmt_create, gmt_modified
+        FROM
+            pms_album
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<AlbumListItemVO> list(); -->
+    <select id="list" resultType="cn.tedu.csmall.product.pojo.vo.AlbumListItemVO">
+        SELECT
+            id, name, description, sort
+        FROM
+            pms_album
+        ORDER BY
+            sort DESC, id DESC
+    </select>
+
 
 
 </mapper>

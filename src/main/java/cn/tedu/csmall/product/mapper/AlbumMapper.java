@@ -58,6 +58,13 @@ public interface AlbumMapper {
     int count();
 
     /**
+     * 根据相册名称统计相册数据的数量
+     * @param name 相册名称
+     * @return 匹配名称的相册数据的数量
+     */
+    int countByName(String name);
+
+    /**
      * 根据ID查询数据的详情
      * @param id 相册ID
      * @return 匹配的相册数据的详情，如果没有匹配的数据，则返回null
@@ -70,6 +77,8 @@ public interface AlbumMapper {
      * @return 相册列表
      */
     List<AlbumListItemVO> list();
+
+
 
 
 

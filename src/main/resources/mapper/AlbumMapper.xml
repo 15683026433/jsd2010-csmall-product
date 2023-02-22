@@ -62,10 +62,15 @@
         SELECT count(*) FROM pms_album
     </select>
 
+    <!--int countByName(String name);-->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_album WHERE name=#{name}
+    </select>
+
     <!-- AlbumStandardVO getStandardById(Long id); -->
-    <select id="getStandardById" resultType="cn.tedu.csmall.product.pojo.vo.AlbumStandardVO">
+    <select id="getStandardById" resultMap="StandardResultMap">
         SELECT
-               id, name, description, sort, gmt_create, gmt_modified
+               <include refid="StandardQueryFields"/>
         FROM
              pms_album
         WHERE
@@ -73,14 +78,42 @@
     </select>
 
     <!-- List<AlbumListItemVO> list(); -->
-    <select id="list" resultType="cn.tedu.csmall.product.pojo.vo.AlbumListItemVO">
+    <select id="list" resultMap="ListResultMap">
         SELECT
-            id, name, description, sort
+            <include refid="ListQueryFields"/>
         FROM
             pms_album
         ORDER BY
             sort DESC, id DESC
     </select>
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            id, name, description, sort
+        </if>
+    </sql>
+
+    <resultMap id="StandardResultMap" type="cn.tedu.csmall.product.pojo.vo.AlbumStandardVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, name, description, sort
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap" type="cn.tedu.csmall.product.pojo.vo.AlbumListItemVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+
 
 
 
