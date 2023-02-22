@@ -6,17 +6,21 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class attribute implements Serializable {
+public class Brand implements Serializable {
+
     private Long id;
-    private Long template_id;
     private String name;
+    private String pinyin;
+    private String logo;
     private String description;
-    private Integer type;
-    private Integer input_type;
-    private String value_list;
-    private String unit;
+    private String keywords;
     private Integer sort;
-    private Integer is_allow_customize;
+    private Integer sales;
+    private Integer product_count;
+    private Integer comment_count;
+    private Integer positive_comment_count;
+    private Integer enable;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
+
 }

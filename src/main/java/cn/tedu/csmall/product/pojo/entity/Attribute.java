@@ -6,18 +6,17 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class category implements Serializable {
+public class Attribute implements Serializable {
     private Long id;
+    private Long template_id;
     private String name;
-    private Long parent_id;
-    private Integer depth;
-    private String keywords;
+    private String description;
+    private Integer type;
+    private Integer input_type;
+    private String value_list;
+    private String unit;
     private Integer sort;
-    private String icon;
-    private Integer enable;
-    private Integer is_parent;
-    private Integer is_display;
+    private Integer is_allow_customize;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
-
 }
