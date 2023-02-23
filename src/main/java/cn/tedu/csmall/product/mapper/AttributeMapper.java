@@ -4,6 +4,7 @@ import cn.tedu.csmall.product.pojo.entity.Album;
 import cn.tedu.csmall.product.pojo.entity.Attribute;
 import cn.tedu.csmall.product.pojo.vo.AlbumListItemVO;
 import cn.tedu.csmall.product.pojo.vo.AlbumStandardVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -57,6 +58,30 @@ public interface AttributeMapper {
      * @return 相册数据的数量
      */
     int count();
+
+    /**
+     * 根据属性模板ID统计数量
+     * @param templateId 属性模板ID
+     * @return
+     */
+    int countByTemplateId(Long templateId);
+
+    /**
+     * 根据名称和属性模板ID统计数量
+     * @param name
+     * @param templateId
+     * @return
+     */
+    int countByNameAndTemplate(@Param("name") String name, @Param("templateId") Long templateId);
+
+    /**
+     * 根据名称、属性模板ID和“非此ID”统计数量
+     * @param id
+     * @param name
+     * @param templateId
+     * @return
+     */
+    int countByNameAndTemplateAndNotId(@Param("id") Long id, @Param("name") String name, @Param("templateId") Long templateId);
 
     /**
      * 根据ID查询数据的详情

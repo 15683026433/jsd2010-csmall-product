@@ -41,7 +41,7 @@
     <!-- int update(Album album); -->
     <update id="update">
         UPDATE
-        pms_album
+        pms_attribute
         <set>
             <if test="name != null">
                 name =#{name},
@@ -59,7 +59,28 @@
 
     <!-- int count(); -->
     <select id="count" resultType="int">
-        SELECT count(*) FROM pms_album
+        SELECT count(*) FROM pms_attribute
+    </select>
+
+    <!-- countByTemplateId(Long templateId); -->
+    <select id="countByTemplateId" resultType="int">
+        SELECT count(*) FROM pms_attribute
+        WHERE template_id=#{templateId}
+    </select>
+
+    <!-- countByNameAndTemplate(@Param("name") String name, @Param("templateId") Long templateId); -->
+    <select id="countByNameAndTemplate" resultType="int">
+        SELECT count(*) FROM pms_attribute
+        WHERE name=#{name}
+          AND template_id=#{templateId}
+    </select>
+
+    <!-- countByNameAndTemplateAndNotId; -->
+    <select id="countByNameAndTemplateAndNotId" resultType="int">
+        SELECT count(*) FROM pms_attribute
+        WHERE name=#{name}
+          AND template_id=#{templateId}
+          AND id!=#{id}
     </select>
 
     <!-- AlbumStandardVO getStandardById(Long id); -->
@@ -67,7 +88,7 @@
         SELECT
             id, name, description, sort, gmt_create, gmt_modified
         FROM
-            pms_album
+            pms_attribute
         WHERE
             id=#{id}
     </select>
@@ -77,7 +98,7 @@
         SELECT
             id, name, description, sort
         FROM
-            pms_album
+            pms_attribute
         ORDER BY
             sort DESC, id DESC
     </select>

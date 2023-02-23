@@ -3,6 +3,7 @@ package cn.tedu.csmall.product.mapper;
 import cn.tedu.csmall.product.pojo.entity.Album;
 import cn.tedu.csmall.product.pojo.vo.AlbumStandardVO;
 import cn.tedu.csmall.product.pojo.vo.AlbumListItemVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -63,6 +64,14 @@ public interface AlbumMapper {
      * @return 匹配名称的相册数据的数量
      */
     int countByName(String name);
+
+    /**
+     * /根据名称和“非此id”统计数量,此方法将用于“有没有别的数据使用此名称”
+     * @param id
+     * @param name
+     * @return
+     */
+    int countByNameAndNotId(@Param("id") Long id, @Param("name") String name);
 
     /**
      * 根据ID查询数据的详情

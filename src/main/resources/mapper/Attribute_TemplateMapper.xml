@@ -62,6 +62,19 @@
         SELECT count(*) FROM pms_album
     </select>
 
+    <!-- int countByName; -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_album
+        WHERE name=#{name}
+    </select>
+
+    <!-- int countByNameAndNotId(@Param("name") String name,@Param("id") Long id); -->
+    <select id="countByNameAndNotId" resultType="int">
+        SELECT count(*) FROM pms_album
+        WHERE name=#{name}
+          AND id!=#{id}
+    </select>
+
     <!-- AlbumStandardVO getStandardById(Long id); -->
     <select id="getStandardById" resultType="cn.tedu.csmall.product.pojo.vo.AlbumStandardVO">
         SELECT

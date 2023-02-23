@@ -4,6 +4,7 @@ import cn.tedu.csmall.product.pojo.entity.Album;
 import cn.tedu.csmall.product.pojo.entity.Brand_Category;
 import cn.tedu.csmall.product.pojo.vo.AlbumListItemVO;
 import cn.tedu.csmall.product.pojo.vo.AlbumStandardVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -57,6 +58,28 @@ public interface Brand_CategoryMapper {
      * @return 相册数据的数量
      */
     int count();
+
+    /**
+     * 根据品牌ID统计数量
+     * @param brandId
+     * @return
+     */
+    int countByBrand(Long brandId);
+
+    /**
+     * 根据类别ID统计数量
+     * @param categoryId 类别ID
+     * @return
+     */
+    int countByCategory(Long categoryId);
+
+    /**
+     * 根据品牌ID和类别ID统计数量
+     * @param brandId 匹配ID
+     * @param categoryId 类别ID
+     * @return
+     */
+    int countByBrandAndCategory(@Param("brandId") Long brandId, @Param("categoryId") Long categoryId);
 
     /**
      * 根据ID查询数据的详情

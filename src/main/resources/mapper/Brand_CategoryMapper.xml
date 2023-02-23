@@ -5,7 +5,7 @@
 
     <!-- int insert(Album album); -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO pms_album (
+        INSERT INTO pms_brand_category (
             name, description, sort
         ) VALUES (
             #{name}, #{description}, #{sort}
@@ -15,7 +15,7 @@
     <!-- int insertBatch(List<Album> albumList); -->
     <!-- INSERT INTO pms_album (xx,xx,xx) VALUES (xx,xx,xx), (xx,xx,xx), (xx,xx,xx) -->
     <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO pms_album (
+        INSERT INTO pms_brand_category (
             name, description, sort
         ) VALUES
             <foreach collection="list" item="album" separator=",">
@@ -25,13 +25,13 @@
 
     <!-- int deleteById(Long id); -->
     <delete id="deleteById">
-        DELETE FROM pms_album WHERE id=#{id}
+        DELETE FROM pms_brand_category WHERE id=#{id}
     </delete>
 
     <!-- int deleteByIds(Long[] ids); -->
     <!-- DELETE FROM pms_album WHERE id IN (1,2,3) -->
     <delete id="deleteByIds">
-        DELETE FROM pms_album WHERE id IN (
+        DELETE FROM pms_brand_category WHERE id IN (
         <foreach collection="array" item="id" separator=",">
             #{id}
         </foreach>
@@ -41,7 +41,7 @@
     <!-- int update(Album album); -->
     <update id="update">
         UPDATE
-        pms_album
+        pms_brand_category
         <set>
             <if test="name != null">
                 name =#{name},
@@ -59,7 +59,26 @@
 
     <!-- int count(); -->
     <select id="count" resultType="int">
-        SELECT count(*) FROM pms_album
+        SELECT count(*) FROM pms_brand_category
+    </select>
+
+    <!-- int countByBrand(Long brandId); -->
+    <select id="countByBrand" resultType="int">
+        SELECT count(*) FROM pms_brand_category
+        WHERE brand_id=#{brandId}
+    </select>
+
+    <!-- int countByCategory(Long categoryId); -->
+    <select id="countByCategory" resultType="int">
+        SELECT count(*) FROM pms_brand_category
+        WHERE category_id=#{categoryId}
+    </select>
+
+    <!-- int countByBrandAndCategory; -->
+    <select id="countByBrandAndCategory" resultType="int">
+        SELECT count(*) FROM pms_brand_category
+        WHERE brand_id=#{brandId}
+          AND category_id=#{categoryId}
     </select>
 
     <!-- AlbumStandardVO getStandardById(Long id); -->
@@ -67,7 +86,7 @@
         SELECT
             id, name, description, sort, gmt_create, gmt_modified
         FROM
-            pms_album
+            pms_brand_category
         WHERE
             id=#{id}
     </select>
@@ -77,7 +96,7 @@
         SELECT
             id, name, description, sort
         FROM
-            pms_album
+            pms_brand_category
         ORDER BY
             sort DESC, id DESC
     </select>
