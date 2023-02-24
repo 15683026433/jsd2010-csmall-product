@@ -1,14 +1,15 @@
 package cn.tedu.csmall.product.ex;
 
+import cn.tedu.csmall.product.web.ServiceCode;
 import lombok.Getter;
 
 public class ServiceException extends RuntimeException {
 
     @Getter
-    private Integer code;
+    private ServiceCode serviceCode;
 
-    public ServiceException(Integer code, String message){
+    public ServiceException(ServiceCode serviceCode, String message){
         super(message);
-        this.code = code;
+        this.serviceCode = serviceCode;
     }
 }
